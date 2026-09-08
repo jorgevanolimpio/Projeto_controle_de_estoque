@@ -64,10 +64,10 @@ class Venda(Base):
         nullable=False, 
         primary_key=True
         )
-    unidade_vendida = Column(
+    unidade_medida = Column(
         'unidade_vendida', 
         String(3)
-        )
+        )     
 
 class PedidoCompra(Base):
     __tablename__ = 'pedido_compra'
@@ -170,7 +170,9 @@ class EntradaMercadoria(Base):
     ordem_compra = Column(
         'ordem_compra', 
         BigInteger, 
-        primary_key=True
+        primary_key=True,
+        default=0,
+        nullable=False
         )
     qtde_recebida = Column(
         'qtde_recebida', 
@@ -193,7 +195,9 @@ class ProdutoFilial(Base):
     filial_id = Column(
         'filial_id', 
         Integer, 
-        primary_key=True
+        primary_key=True,
+        nullable=False,
+        default=1
         )
     produto_id = Column(
         'produto_id', 
@@ -234,13 +238,13 @@ class ProdutoFilial(Base):
         Integer
         )
 
+
 class Fornecedor(Base):
     __tablename__ = 'fornecedor'
 
     fornecedor_id = Column(
-        'fornecedor_id', 
-        String(25), 
-        nullable=False, 
+        'fornecedor_id',
+        BigInteger, 
         primary_key= True,
         autoincrement=True
         )
@@ -248,7 +252,8 @@ class Fornecedor(Base):
         'razao_social', 
         String(255), 
         nullable=False, 
-        primary_key= True
+        primary_key= True,
+        unique=True
         )
 
 
