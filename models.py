@@ -17,8 +17,7 @@ class Venda(Base):
         'venda_id', 
         BigInteger, 
         nullable=False, 
-        primary_key=True, 
-        autoincrement=True
+        primary_key=True
         )
     data_emissao = Column(
         'data_emissao', 
@@ -65,7 +64,7 @@ class Venda(Base):
         primary_key=True
         )
     unidade_medida = Column(
-        'unidade_vendida', 
+        'unidade_medida',
         String(3)
         )     
 
@@ -74,9 +73,8 @@ class PedidoCompra(Base):
 
     pedido_id = Column(
         'pedido_id',
-        Float,
-        primary_key=True,
-        autoincrement=True
+        Integer,
+        primary_key=True
         )
     data_pedido = Column(
         'data_pedido',
@@ -245,15 +243,13 @@ class Fornecedor(Base):
     fornecedor_id = Column(
         'fornecedor_id',
         BigInteger, 
-        primary_key= True,
-        autoincrement=True
+        primary_key= True
         )
     razao_social = Column(
         'razao_social', 
         String(255), 
         nullable=False, 
-        primary_key= True,
-        unique=True
+        primary_key= True
         )
 
 

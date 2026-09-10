@@ -1,1 +1,8 @@
+# diretórios
 __pycache__/
+
+# arquivos temporários
+~$*
+
+# variável de ambiente
+.env
