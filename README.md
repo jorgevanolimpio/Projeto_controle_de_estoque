@@ -104,7 +104,6 @@ DATABASE_URL=postgresql+psycopg://usuario:senha@localhost:5432/desafio_systock
 
 Não versione o arquivo `.env`.
 
-> `models.py` contém a definição ORM das tabelas e executa `Base.metadata.create_all(...)`. Antes de utilizar o projeto em outro ambiente, revise a URL fixa presente nesse arquivo para evitar credenciais no código-fonte e manter a configuração alinhada ao `DATABASE_URL`.
 
 ## Execução
 
