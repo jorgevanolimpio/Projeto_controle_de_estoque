@@ -1,9 +1,25 @@
 from sqlalchemy import create_engine, Column, Integer, String, Numeric, Date, Float, BigInteger
 from sqlalchemy.orm import declarative_base
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
+# Busca a variável de ambiente DATABASE_URL.
+# Se não estiver definida, interrompe a execução com uma mensagem clara,
+# em vez de deixar o erro estourar mais adiante de forma confusa.
+DATABASE_URL = os.getenv("DATABASE_URL")
+
+if not DATABASE_URL:
+    raise EnvironmentError(
+        "DATABASE_URL não foi definida. "
+        "Configure-a em um arquivo .env na raiz do projeto "
+        "ou como variável de ambiente do sistema. "
+    )
 
 # Conectar ao banco
 
-db = create_engine("postgresql+psycopg://postgres:123456@localhost:5432/desafio_systock")
+db = create_engine(DATABASE_URL)
 
 
 Base = declarative_base()
@@ -233,9 +249,8 @@ class ProdutoFilial(Base):
         )
     fornecedor_id = Column(
         'fornecedor_id', 
-        Integer
+        BigInteger
         )
-
 
 class Fornecedor(Base):
     __tablename__ = 'fornecedor'
@@ -254,3 +269,6 @@ class Fornecedor(Base):
 
 
 Base.metadata.create_all(db)
+
+# Libera as conexões do pool do engine ao final da execução
+db.dispose()
